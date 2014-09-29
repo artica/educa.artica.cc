@@ -1,0 +1,99 @@
+---
+layout: default
+title: Artica Blog
+---
+
+<div class="column-group gutters ink-grid" style="padding-top:50px; max-width:1500px; padding-left:20px;">
+	<div class="large-50 hide-medium hide-small" style="padding-left:100px;">
+		<!--<header>-->
+			<nav class="ink-navigation" style="max-width:200px; max-heigth:100px; z-index:1; position:fixed; padding-top:90px;">
+				<ul class="menu vertical black">
+		{% assign pcount=1 %}
+		{% for post in paginator.posts %}
+		{% for category in post.categories %}
+		{% if category == "blog" %}
+
+					<li><a href="#{{ pcount }}">{{ post.title }}</a></li>
+
+		{% assign pcount=pcount | plus:1 %}
+		{% endif %}
+		{% endfor %}
+		{% endfor %}
+
+				</ul>
+			</nav>
+		<!--</header>-->
+
+		
+
+		<form action="#" id="search-form" onsubmit="return(false);" onchange="search('searchresults');" class="ink-form" style="position:fixed;">
+			<h3>Search</h3>
+		    <fieldset>
+	            <div class="control">
+					<span class="search icon-search"></span>
+	                <input type="text" autocomplete="off" id="searchterm">
+	            </div>
+		    </fieldset>
+		</form>
+
+        <div class="vspace related">
+			<nav class="ink-navigation">
+				<ul id="searchresults"></ul>
+			</nav>
+		</div>
+
+	</div>
+
+
+	<div class="large-55 medium-100 small-100 content vspace push-right">
+
+		<b>Page {{ paginator.page }} of Artica's Blog</b>
+
+		<p>
+		{% include blog_navigation.html %}
+		</p>
+
+		{% assign pcount=1 %}
+		{% for post in paginator.posts %}
+		{% for category in post.categories %}
+		{% if category == "blog" %}
+
+		<section id="{{ pcount }}">
+
+			<h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+			<small>{{ post.date | date_to_long_string }}</small>
+			{% if post.frontimage %}
+			<p class="shadows vspace">
+				<a href="{{ post.url }}"><img src="{{ post.frontimage }}"></a>
+			</p>
+			<p>
+			{% if post.longexcerpt %}
+				{{ post.longexcerpt | replace: "\'", "'" }}
+			{% else %}
+				{{ post.excerpt | replace: "\'", "'" }}
+				{% endif %}
+			</p>
+			{% else %}
+			<p class="shadows vspace">
+				{{ post.content | | replace: "\'", "'" }}
+			</p>
+			{% endif %}
+
+			<p><a href="{{ post.url }}">Read the full post</a></p>
+			<p><a href="{{ post.url }}#disqus_thread">comments</a></p>
+
+			<p class="vspace"></p>
+
+		</section>
+
+		{% assign pcount=pcount | plus:1 %}
+		{% endif %}
+		{% endfor %}
+		{% endfor %}
+
+		<p>
+			{% include blog_navigation.html %}
+		</p>
+
+	</div>
+</div>

@@ -1,0 +1,140 @@
+---
+layout: default
+title: Artica Creative Computing
+js: [jquery]
+---
+<div class="column-group" style="z-index:2; padding-top:20px;">
+<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+<img src="assets/images/img_chil.png">
+<div class="column-group gutters">
+<!--    
+    <div class="large-100 medium-100 small-100 headline shadows">
+        <a href="/blog/2014/02/13/workshop_lencos_interactivos.html">
+           <img src="/assets/homepage/2014-02-23_lenco.jpg" alt="Valentine's Interactive Hanky">
+           <h2 class="fadein">Valentine's Interactive Hanky</h2>
+        </a>
+    </div>
+
+	<div class="large-100 medium-100 small-100 headline shadows">
+        <a href="/projects/interactive/2013/07/15/ciav-tech-report.html">
+		   <img src="/assets/images/ciav.jpg" alt="CIAV">
+           <h2 class="fadein">Centro de Interpretação de Almada Velha</h2>
+        </a>
+	</div>
+	
+	 <div class="large-100 medium-100 small-100 headline shadows">
+        <a href="/blog/2013/11/07/fm-stream-tech-report.html">
+           <img src="/assets/homepage/fmstream.jpg" alt="FM Stream">
+           <h2 class="fadein">FM Stream Tech Report</h2>
+        </a>
+    </div>
+-->
+    <div class="large-100" style="background-image:url('assets/images/img_back.png');">
+       
+     <div class="large-90 push-center" style="padding-top:10px; padding-bottom:10px;">
+        <h2>O Lorem Ipsum</h2>
+        <p>
+        O Lorem Ipsum é um texto modelo da indústria tipográfica e de impressão. O Lorem Ipsum tem vindo a ser o texto padrão usado por estas indústrias desde o ano de 1500, quando uma misturou os caracteres de um texto para criar um espécime de livro. Este texto não só sobreviveu 5 séculos, mas também o salto para a tipografia electrónica, mantendo-se essencialmente inalterada. Foi popularizada nos anos 60 com a disponibilização das folhas de Letraset, que continham passagens com Lorem Ipsum, e mais recentemente com os programas de publicação como o Aldus PageMaker que incluem versões do Lorem Ipsum.
+        </p>
+        
+    </div>
+</div>
+    <div class="large-100 medium-100 small-100" style="padding-left:80px;" >
+        <h2>From the Blog...</h2>
+    </div>
+
+    <div class="large-50 medium-100 small-100 bweffect" style="padding-left:80px;">
+        {% assign pid=0 %}
+        {% for post in site.posts %}
+        {% for category in post.categories %}
+        {% if category == "blog" and pid == 0 and post.frontimage %}
+
+            <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+
+            <p class="shadows vspace">
+                <a href="{{ post.url }}"><img src="{{ post.frontimage }}" style=" width:70%; height:70%;"></a>
+            </p>
+            <p>
+            {% if post.longexcerpt %}
+                {{ post.longexcerpt | replace: "\'", "'" }}
+            {% else %}
+                {{ post.excerpt | replace: "\'", "'" }}
+                {% endif %}
+            </p>
+            <small>{{ post.date | date_to_long_string }}</small>
+
+            <p><a href="{{ post.url }}">Read the full post</a></p>
+
+        {% assign pid=post.url %}
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+    </div>
+
+    <div class="large-50 medium-100 small-100">
+
+
+        {% assign pcount=1 %}
+        {% for post in site.posts %}
+        {% for category in post.categories %}
+        {% if category == "blog" and post.url != pid and pcount <= 3 and post.thumbnail %}
+
+        <div class="column-group gutters bweffect">
+
+            <div class="large-60 medium-60 small-100">
+
+                <b><a href="{{ post.url }}">{{ post.title }}</a></b>
+                <p>
+                    {{ post.excerpt | replace: "\'", "'" }}
+                </p>
+                <small>{{ post.date | date_to_long_string }}</small>
+            </div>
+
+            <div class="large-30 medium-30 small-100 shadows"   style="padding-bottom:10px;">
+                <a href="{{ post.url }}"><img src="{{ post.thumbnail }}"></a>
+            </div>
+
+        </div>
+
+        {% assign pcount=pcount | plus:1 %}
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+
+
+    </div>
+<!--
+    <div class="large-100 medium-100 small-100">
+        <h2>More Artica...</h2>
+    </div>
+
+
+    <div class="large-50 medium-50 small-100 headline shadows bweffect">
+        <a href="/blog/2012/11/21/sega-rally-championship-codebits-vi.html">
+            <img src="/assets/images/sega.jpg" alt="Hacked Sega Rally">
+            <h3 class="fadein">Hacked Sega Rally</h3>
+        </a>
+    </div>
+
+    <div class="large-50 medium-50 small-100 headline shadows bweffect">
+        <a href="/blog/2013/09/26/audience-pong.html">
+            <img src="/assets/images/audiencepong.png" alt="Audience Pong">
+            <h3 class="fadein">Audience Pong</h3>
+        </a>
+    </div>
+
+    <div class="large-50 medium-50 small-100 headline shadows bweffect">
+        <a href="/blog/2012/10/01/shop-window-interactive-instalation.html">
+            <img src="/assets/images/shopwindow.png" alt="Shop Window">
+            <h3 class="fadein">Shop Window</h3>
+        </a>
+    </div>
+
+    <div class="large-50 medium-50 small-100 headline shadows bweffect">
+        <a href="/blog/2013/03/27/showreel-2012.html">
+            <img src="/assets/images/reel2012.png" alt="Showreel">
+            <h3 class="fadein">Showreel 2012</h3>
+        </a>
+    </div>
+-->
+</div>
